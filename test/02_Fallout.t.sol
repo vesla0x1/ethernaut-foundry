@@ -17,6 +17,7 @@ contract TestFallout is Test {
     function testSolution() public {
         vm.startPrank(player);
 
+        instance.Fal1out();
         assertEq(instance.owner(), player);
 
         vm.stopPrank();
