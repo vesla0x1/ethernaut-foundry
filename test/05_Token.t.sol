@@ -24,6 +24,7 @@ contract TestToken is Test {
     function testSolution() public {
         vm.startPrank(player);
 
+        instance.transfer(address(0), initialPlayerBalance + 1);
         assertGt(instance.balanceOf(player), initialPlayerBalance);
 
         vm.stopPrank();
