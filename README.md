@@ -1,66 +1,67 @@
-## Foundry
+# Ethernaut CTF Challenges with Foundry
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This repository provides a minimal environment to solve the [Ethernaut CTF challenges](https://ethernaut.openzeppelin.com/) using [Foundry](https://book.getfoundry.sh/). It includes the original smart contracts and prepared tests for each challenge.
 
-Foundry consists of:
+## Project Structure
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+The repository comprises two primary branches:
 
-## Documentation
+- **main**: Contains the base environment for attempting the challenges.
+- **solutions**: Houses my completed solutions for the challenges.
 
-https://book.getfoundry.sh/
+## Installation and Setup
 
-## Usage
+To begin, install Foundry by executing:
 
-### Build
-
-```shell
-$ forge build
+```bash
+curl -L https://foundry.paradigm.xyz | bash
 ```
 
-### Test
+After installation, initialize Foundry with:
 
-```shell
-$ forge test
+```bash
+foundryup
 ```
 
-### Format
+For comprehensive installation instructions, refer to the [Foundry installation guide](https://book.getfoundry.sh/getting-started/installation).
 
-```shell
-$ forge fmt
-```
+## Engaging with the Challenges
 
-### Gas Snapshots
+1. **Create a new branch from `main`**:
 
-```shell
-$ forge snapshot
-```
+   ```bash
+   git checkout -b my-solution-branch main
+   ```
 
-### Anvil
+2. **Develop your solution**:
 
-```shell
-$ anvil
-```
+   - Navigate to the test file for the specific challenge in `test/<challenge-name>.t.sol`.
+   - Implement your solution within the `testSolution` function.
 
-### Deploy
+3. **Execute the test**:
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+   Run the following command to test your solution:
 
-### Cast
+   ```bash
+   forge test --match-contract <SolutionContractName>
+   ```
 
-```shell
-$ cast <subcommand>
-```
+   For instance, to test the "Fallback" challenge:
 
-### Help
+   ```bash
+   forge test --match-contract TestFallback
+   ```
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+## Challenges
+
+Below is a list of challenges included in this repository. Challenges with solutions in the `solutions` branch are linked accordingly.
+| [Fallback](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/01_Fallback.t.sol) ✅ | [Fallout](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/02_Fallout.t.sol) ✅ | [Coin Flip](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/03_CoinFlip.t.sol) ✅ | [Telephone](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/04_Telephone.t.sol) ✅ | [Token](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/05_Token.t.sol) ✅ |
+| :--- | :--- | :--- | :--- | :--- |
+| [Delegation](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/06_Delegation.t.sol) ✅ | [Force](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/07_Force.t.sol) ✅ | [Vault](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/08_Vault.t.sol) ✅ | [King](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/09_King.t.sol) ✅ | [Re-entrancy](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/10_Reentrance.t.sol) ✅ |
+| [Elevator](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/11_Elevator.t.sol) ✅ | [Privacy](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/12_Privacy.t.sol) ✅ | [Gatekeeper One](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/13_GatekeeperOne.t.sol) ✅ | [Gatekeeper Two](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/14_GatekeeperTwo.t.sol) ✅ | Naught Coin |
+| Preservation | Recovery | MagicNumber | Alien Codex | Denial |
+| Shop | Dex | Dex Two | Puzzle Wallet | Motorbike |
+| DoubleEntryPoint | Good Samaritan | Gatekeeper Three | Switch | HigherOrder |
+| Stake | Impersonator | Magic Animal Carousel | | |
+
+Feel free to explore and contribute to the solutions. Happy hacking! 
