@@ -59,7 +59,7 @@ Below is a list of challenges included in this repository. Challenges with solut
 | :--- | :--- | :--- | :--- | :--- |
 | [Delegation](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/06_Delegation.t.sol) ✅ | [Force](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/07_Force.t.sol) ✅ | [Vault](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/08_Vault.t.sol) ✅ | [King](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/09_King.t.sol) ✅ | [Re-entrancy](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/10_Reentrance.t.sol) ✅ |
 | [Elevator](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/11_Elevator.t.sol) ✅ | [Privacy](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/12_Privacy.t.sol) ✅ | [Gatekeeper One](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/13_GatekeeperOne.t.sol) ✅ | [Gatekeeper Two](https://github.com/vesla0x1/ethernaut-foundry/tree/solutions/test/14_GatekeeperTwo.t.sol) ✅ | [Naught Coin](https://github.com/vesla0x1/ethernaut-foundry/blob/solutions/test/15_NaughtCoin.sol) ✅ |
-| [Preservation](https://github.com/vesla0x1/ethernaut-foundry/blob/solutions/test/16_Preservation.sol) ✅ | Recovery | MagicNumber | Alien Codex | Denial |
+| [Preservation](https://github.com/vesla0x1/ethernaut-foundry/blob/solutions/test/16_Preservation.sol) ✅ | [Recovery](https://github.com/vesla0x1/ethernaut-foundry/blob/solutions/test/17_Recovery.sol) ✅ | MagicNumber | Alien Codex | Denial |
 | Shop | Dex | Dex Two | Puzzle Wallet | Motorbike |
 | DoubleEntryPoint | Good Samaritan | Gatekeeper Three | Switch | HigherOrder |
 | Stake | Impersonator | Magic Animal Carousel | | |
