@@ -20,6 +20,15 @@ contract DetectionBot is IDetectionBot {
     }
 
     function handleTransaction(address user, bytes calldata msgData) public {
+        address origSender;
+        assembly {
+            // we need to check if origSender == CryptoVault
+            // origSender is at 0xa8 calldata position.
+            origSender := calldataload(0xa8)
+        }
+        if (origSender == cryptoVault) {
+            IForta(msg.sender).raiseAlert(user);
+        }
     }
 }
 
@@ -46,9 +55,7 @@ contract TestDoubleEntryPoint is Test {
         vm.startPrank(player);
         forta.setDetectionBot(address(detectionBot));
         vm.expectRevert("Alert has been triggered, reverting");
-
-        // Your exploit goes here
-
+        cryptoVault.sweepToken(legacyToken);
         vm.stopPrank();
     }
 }
